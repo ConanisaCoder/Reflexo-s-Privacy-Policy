@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101713" />
+    <meta
+      name="description"
+      content="Learn how Reflexo handles your privacy, locally stored reaction-time records and preferences."
+    />
+    <title>Privacy Policy — Reflexo</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --background: #f6f8f5;
+        --surface: #ffffff;
+        --surface-soft: #edf2ed;
+        --foreground: #202923;
+        --muted: #68736c;
+        --border: #dce4dc;
+        --primary: #16875d;
+        --primary-soft: #e1f4e9;
+        --shadow: 0 24px 70px rgb(27 48 35 / 8%);
+        --glow: rgb(50 191 124 / 13%);
+      }
+
+      :root.dark {
+        color-scheme: dark;
+        --background: #151b1b;
+        --surface: #1d2524;
+        --surface-soft: #27312e;
+        --foreground: #eef5ef;
+        --muted: #a5b2aa;
+        --border: #35413b;
+        --primary: #7fe0aa;
+        --primary-soft: #253c31;
+        --shadow: 0 24px 70px rgb(0 0 0 / 22%);
+        --glow: rgb(50 191 124 / 12%);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 50% -10%, var(--glow), transparent 38rem),
+          var(--background);
+        color: var(--foreground);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.65;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      button, select { font: inherit; }
+
+      .wrap { width: min(100% - 36px, 920px); margin-inline: auto; }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 82px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--foreground);
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: .02em;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--primary);
+        color: #10271c;
+      }
+
+      .brand-mark svg { width: 20px; height: 20px; }
+
+      .controls { display: flex; align-items: center; gap: 9px; }
+
+      .control {
+        min-height: 40px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface);
+        color: var(--foreground);
+      }
+
+      .language {
+        max-width: 190px;
+        padding: 0 32px 0 12px;
+        cursor: pointer;
+      }
+
+      .theme-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 13px;
+        cursor: pointer;
+        transition: border-color 160ms ease, color 160ms ease;
+      }
+
+      .theme-button:hover, .language:hover { border-color: var(--primary); }
+      .theme-button svg { width: 17px; height: 17px; }
+
+      main { padding: 36px 0 88px; }
+
+      .hero { max-width: 760px; margin: 10px auto 34px; text-align: center; }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        color: var(--primary);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before, .eyebrow::after {
+        width: 18px;
+        height: 1px;
+        background: currentColor;
+        content: "";
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 7vw, 4.25rem);
+        font-weight: 850;
+        letter-spacing: -.065em;
+        line-height: 1.06;
+      }
+
+      .hero-copy {
+        max-width: 620px;
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2.5vw, 1.12rem);
+      }
+
+      .updated {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        letter-spacing: .02em;
+      }
+
+      .summary {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin: 0 0 24px;
+        padding: 20px 22px;
+        border: 1px solid color-mix(in srgb, var(--primary) 26%, var(--border));
+        border-radius: 20px;
+        background: var(--primary-soft);
+      }
+
+      .summary-icon {
+        display: grid;
+        flex: 0 0 40px;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border-radius: 13px;
+        background: var(--surface);
+        color: var(--primary);
+      }
+
+      .summary-icon svg { width: 21px; height: 21px; }
+      .summary p { margin: 0; color: var(--foreground); }
+      .summary strong { color: var(--primary); }
+
+      .policy {
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .policy-section {
+        display: grid;
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 18px;
+        padding: 27px 30px;
+      }
+
+      .policy-section + .policy-section { border-top: 1px solid var(--border); }
+
+      .section-number {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface-soft);
+        color: var(--primary);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .section-content h2 {
+        margin: 5px 0 9px;
+        font-size: 1.12rem;
+        font-weight: 750;
+        letter-spacing: -.02em;
+        line-height: 1.35;
+      }
+
+      .section-content p { margin: 0; color: var(--muted); }
+      .section-content p + p { margin-top: 10px; }
+      .section-content strong { color: var(--foreground); font-weight: 650; }
+      .section-content a { color: var(--primary); text-underline-offset: 3px; }
+
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 22px 2px 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .footer-brand {
+        color: var(--foreground);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-weight: 750;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      [dir="rtl"] .language { padding: 0 12px 0 32px; }
+      [dir="rtl"] .policy-section { text-align: right; }
+
+      @media (max-width: 600px) {
+        .wrap { width: min(100% - 28px, 920px); }
+        .topbar { min-height: 72px; gap: 10px; }
+        .brand { gap: 8px; }
+        .brand-mark { width: 34px; height: 34px; }
+        .controls { gap: 6px; }
+        .language { max-width: 142px; padding-inline: 9px 24px; font-size: 13px; }
+        .theme-button { width: 40px; padding: 0; }
+        .theme-label { display: none; }
+        main { padding-top: 32px; }
+        .hero { margin-bottom: 26px; }
+        .summary { gap: 12px; padding: 16px; border-radius: 17px; }
+        .policy { border-radius: 19px; }
+        .policy-section { grid-template-columns: 38px minmax(0, 1fr); gap: 13px; padding: 21px 17px; }
+        .section-number { width: 36px; height: 36px; border-radius: 12px; }
+        .section-content h2 { margin-top: 3px; font-size: 1.04rem; }
+        footer { align-items: flex-start; flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar wrap">
+      <a class="brand" href="#" aria-label="Reflexo">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 4.5 13h6l-.5 9 9.5-12h-6z" />
+          </svg>
+        </span>
+        <span>Reflexo</span>
+      </a>
+      <div class="controls">
+        <label class="visually-hidden" for="language"></label>
+        <select class="control language" id="language" aria-label="Language">
+          <option value="en">English</option>
+          <option value="zh">中文（普通话）</option>
+          <option value="hi">हिन्दी</option>
+          <option value="es">Español</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="bn">বাংলা</option>
+          <option value="pt">Português</option>
+          <option value="ru">Русский</option>
+        </select>
+        <button class="control theme-button" id="theme-toggle" type="button" aria-pressed="false">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+          <span class="theme-label" id="theme-label"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div class="hero">
+        <div class="eyebrow" id="eyebrow"></div>
+        <h1 id="page-title"></h1>
+        <p class="hero-copy" id="intro"></p>
+        <p class="updated" id="updated"></p>
+      </div>
+
+      <aside class="summary">
+        <span class="summary-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </span>
+        <p id="summary"></p>
+      </aside>
+
+      <article class="policy" id="policy" aria-label="Privacy policy"></article>
+
+      <footer>
+        <span class="footer-brand">Reflexo · Reaction lab</span>
+        <span id="footer-note"></span>
+      </footer>
+    </main>
+
+    <script>
+      const content = {
+        en: {
+          eyebrow: "Your data, your device",
+          title: "Privacy Policy",
+          intro: "A clear explanation of what Reflexo stores, what stays on your device, and the choices you have.",
+          updated: "Last updated · October 4, 2026",
+          summary: "<strong>The short version:</strong> Reflexo does not require an account. Your game records and preferences are stored in your browser on this device; Reflexo does not send them to its own servers.",
+          sections: [
+            ["Information Reflexo handles", "Reflexo saves reaction-time results and game history so you can see your personal records and statistics. It also saves your selected language, light or dark appearance, and sound preferences. These items are stored in your browser's local storage on this device; they are not attached to an account."],
+            ["How the app uses it", "The app reads locally stored records to show your statistics and reads your preferences to apply the settings you chose. Reaction tests use your taps, clicks, key presses, or pointer input to play the games and calculate results. Audio cues are synthesized in your browser; Reflexo does not use your microphone to record you."],
+            ["Storage and save files", "Your browser keeps this information until it is removed. The app limits stored run history to the 200 most recent results for each minigame. You can export a save file yourself; it is downloaded to your device and contains your run history and settings. If you import or share that file, you choose where it goes and who can access it."],
+            ["Sharing and network services", "Reflexo does not sell personal information, display behavior-based advertising, or transmit your game history or preferences to Reflexo-operated servers. The website host and your browser may process basic connection data (such as an IP address and request details) to deliver the page, protect the service, or diagnose operational issues. Those processes are governed by the host's policies."],
+            ["Preview and error diagnostics", "When Reflexo is opened inside a development/editor preview, that environment may provide optional error-reporting tools. If enabled by the preview platform, technical error details may be sent to that platform to help diagnose failures. This is separate from Reflexo's local game records and is subject to the platform's privacy terms. The released app itself does not include a Reflexo analytics or advertising tracker."],
+            ["Your choices and data removal", "You can remove Reflexo's stored data by clearing this site's browser storage or app data in your device settings. You can also use the app's save controls to export your records. Removing browser storage may also reset your language, appearance, and sound preferences. Keep exported save files secure because they contain your game history and settings."],
+            ["Children's privacy", "Reflexo does not ask for a name, email address, or account registration. The app is not designed to collect personal information from children. If you believe information has been provided to a hosting or preview provider, contact that provider to exercise any applicable rights."],
+            ["Changes and contact", "This policy may be updated when the app's data practices or features change. The latest version will be published at this page with a revised update date. Reflexo currently does not publish a dedicated privacy contact address; use the support channel provided by the app's distributor or hosting platform for questions."]
+          ],
+          footer: "Built for quick reactions. Designed with privacy in mind.",
+          languageLabel: "Language",
+          light: "Light theme",
+          dark: "Dark theme",
+          useLight: "Switch to light theme",
+          useDark: "Switch to dark theme",
+          policyLabel: "Privacy policy"
+        },
+        zh: {
+          eyebrow: "你的数据，由你掌控",
+          title: "隐私政策",
+          intro: "清楚说明 Reflexo 会存储什么、哪些信息留在你的设备上，以及你可以如何管理。",
+          updated: "最后更新 · 2026年10月4日",
+          summary: "<strong>简而言之：</strong>Reflexo 无需创建账户。游戏记录和偏好设置存储在此设备的浏览器中；Reflexo 不会将这些数据发送到自己的服务器。",
+          sections: [
+            ["Reflexo 处理的信息", "Reflexo 会保存反应时间结果和游戏记录，以便你查看个人纪录和统计数据；也会保存你选择的语言、明暗主题和声音偏好。这些信息存储在此设备的浏览器本地，不会关联到账户。"],
+            ["应用如何使用这些信息", "应用会读取本地记录以显示统计数据，并读取偏好设置以应用你的选择。反应测试会使用你的触控、点击、按键或指针输入来运行游戏并计算结果。音效由浏览器生成；Reflexo 不会使用麦克风录音。"],
+            ["存储和存档文件", "这些信息会保留在浏览器中，直到你将其删除。每个小游戏最多保存最近 200 次结果。你可以自行导出存档文件；文件会下载到你的设备，并包含游戏记录和设置。导入或分享文件时，由你决定保存位置及谁可以访问。"],
+            ["信息共享和网络服务", "Reflexo 不出售个人信息、不投放基于行为的广告，也不会将游戏记录或偏好设置传送到 Reflexo 自有服务器。网站托管服务和浏览器可能会处理基本连接数据（例如 IP 地址和请求详情），用于传送页面、保护服务或诊断运行问题。此类处理受托管服务的政策约束。"],
+            ["预览环境和错误诊断", "在开发工具或编辑器预览中打开 Reflexo 时，该环境可能提供可选的错误报告工具。如果预览平台启用了此功能，技术错误详情可能会发送给该平台以帮助排查故障。这与 Reflexo 本地保存的游戏记录分开，并受该平台隐私条款约束。正式发布的应用不含 Reflexo 分析或广告跟踪器。"],
+            ["你的选择和数据删除", "你可以清除此网站的浏览器存储，或在设备设置中清除应用数据，以删除 Reflexo 保存的信息。你也可以通过应用的存档功能导出记录。清除浏览器存储可能同时重置语言、主题和声音偏好。导出的存档包含游戏记录和设置，请妥善保管。"],
+            ["儿童隐私", "Reflexo 不会要求你提供姓名、电子邮件地址或注册账户。本应用并非为收集儿童个人信息而设计。如果你认为信息已提供给托管或预览服务提供商，请联系该提供商行使适用权利。"],
+            ["政策变更和联系", "当应用的数据处理方式或功能发生变化时，本政策可能会更新。最新版本将在此页面发布，并注明更新日期。Reflexo 目前未公布专用隐私联系地址；如有疑问，请使用应用发行方或托管平台提供的支持渠道。"]
+          ],
+          footer: "为快速反应而造，也将隐私放在心上。",
+          languageLabel: "语言",
+          light: "浅色主题",
+          dark: "深色主题",
+          useLight: "切换到浅色主题",
+          useDark: "切换到深色主题",
+          policyLabel: "隐私政策"
+        },
+        hi: {
+          eyebrow: "आपका डेटा, आपका उपकरण",
+          title: "गोपनीयता नीति",
+          intro: "Reflexo क्या सहेजता है, क्या आपके डिवाइस पर रहता है और आपके पास कौन से विकल्प हैं—इसका स्पष्ट विवरण।",
+          updated: "अंतिम अपडेट · 4 अक्टूबर 2026",
+          summary: "<strong>संक्षेप में:</strong> Reflexo के लिए खाते की ज़रूरत नहीं है। आपके गेम रिकॉर्ड और प्राथमिकताएँ इसी डिवाइस के ब्राउज़र में रहती हैं; Reflexo इन्हें अपने सर्वर पर नहीं भेजता।",
+          sections: [
+            ["Reflexo कौन-सी जानकारी संभालता है", "Reflexo प्रतिक्रिया-समय के नतीजे और गेम इतिहास सहेजता है, ताकि आप अपने रिकॉर्ड और आँकड़े देख सकें। चुनी हुई भाषा, हल्की या गहरी थीम और ध्वनि प्राथमिकताएँ भी सहेजी जाती हैं। ये जानकारियाँ इस डिवाइस के ब्राउज़र के स्थानीय संग्रहण में रहती हैं और किसी खाते से जुड़ी नहीं होतीं।"],
+            ["ऐप इसका उपयोग कैसे करता है", "ऐप आँकड़े दिखाने के लिए स्थानीय रिकॉर्ड और आपकी चुनी हुई सेटिंग लागू करने के लिए प्राथमिकताएँ पढ़ता है। प्रतिक्रिया परीक्षण गेम चलाने और नतीजे निकालने के लिए आपके टैप, क्लिक, कुंजी दबाने या पॉइंटर इनपुट का उपयोग करते हैं। ध्वनि संकेत ब्राउज़र में बनते हैं; Reflexo आपको रिकॉर्ड करने के लिए माइक्रोफ़ोन का उपयोग नहीं करता।"],
+            ["संग्रहण और सेव फ़ाइलें", "यह जानकारी तब तक ब्राउज़र में रहती है जब तक आप इसे हटाते नहीं। हर मिनीगेम के लिए अधिकतम 200 सबसे नए नतीजे रखे जाते हैं। आप स्वयं सेव फ़ाइल निर्यात कर सकते हैं; यह आपके डिवाइस पर डाउनलोड होती है और इसमें गेम इतिहास व सेटिंग्स होती हैं। फ़ाइल आयात या साझा करने पर उसका स्थान और पहुँच आपके नियंत्रण में है।"],
+            ["साझाकरण और नेटवर्क सेवाएँ", "Reflexo व्यक्तिगत जानकारी नहीं बेचता, व्यवहार-आधारित विज्ञापन नहीं दिखाता और आपके गेम इतिहास या प्राथमिकताओं को Reflexo द्वारा संचालित सर्वर पर नहीं भेजता। वेबसाइट होस्ट और आपका ब्राउज़र पेज देने, सेवा की सुरक्षा या तकनीकी समस्याओं का निदान करने के लिए बुनियादी कनेक्शन डेटा (जैसे IP पता और अनुरोध विवरण) संसाधित कर सकते हैं। यह प्रक्रिया होस्ट की नीतियों के अधीन है।"],
+            ["पूर्वावलोकन और त्रुटि निदान", "डेवलपमेंट या एडिटर प्रीव्यू में Reflexo खोलने पर उस वातावरण में वैकल्पिक त्रुटि-रिपोर्टिंग सुविधाएँ हो सकती हैं। यदि प्रीव्यू प्लेटफ़ॉर्म इन्हें चालू करता है, तो तकनीकी त्रुटि विवरण समस्या की जाँच के लिए उस प्लेटफ़ॉर्म को भेजे जा सकते हैं। यह Reflexo के स्थानीय गेम रिकॉर्ड से अलग है और प्लेटफ़ॉर्म की गोपनीयता शर्तों के अधीन है। जारी ऐप में Reflexo का एनालिटिक्स या विज्ञापन ट्रैकर नहीं है।"],
+            ["आपके विकल्प और डेटा हटाना", "Reflexo का सहेजा डेटा हटाने के लिए इस साइट का ब्राउज़र संग्रहण साफ़ करें या डिवाइस सेटिंग में ऐप डेटा हटाएँ। आप ऐप के सेव विकल्पों से रिकॉर्ड निर्यात भी कर सकते हैं। ब्राउज़र संग्रहण साफ़ करने से भाषा, थीम और ध्वनि प्राथमिकताएँ भी रीसेट हो सकती हैं। निर्यात की गई फ़ाइल में गेम इतिहास और सेटिंग्स होती हैं, इसलिए उसे सुरक्षित रखें।"],
+            ["बच्चों की गोपनीयता", "Reflexo नाम, ईमेल पता या खाता पंजीकरण नहीं माँगता। ऐप बच्चों की व्यक्तिगत जानकारी एकत्र करने के लिए नहीं बनाया गया है। यदि आपको लगता है कि कोई जानकारी होस्टिंग या प्रीव्यू प्रदाता को दी गई है, तो लागू अधिकारों के लिए उस प्रदाता से संपर्क करें।"],
+            ["बदलाव और संपर्क", "ऐप की सुविधाओं या डेटा व्यवहार में बदलाव होने पर यह नीति अपडेट हो सकती है। नवीनतम संस्करण संशोधित तारीख के साथ इसी पेज पर प्रकाशित होगा। Reflexo ने अभी अलग गोपनीयता संपर्क पता प्रकाशित नहीं किया है; प्रश्नों के लिए ऐप वितरक या होस्टिंग प्लेटफ़ॉर्म के सहायता माध्यम का उपयोग करें।"]
+          ],
+          footer: "तेज़ प्रतिक्रिया के लिए बना, गोपनीयता का ध्यान रखकर।",
+          languageLabel: "भाषा",
+          light: "हल्की थीम",
+          dark: "गहरी थीम",
+          useLight: "हल्की थीम पर जाएँ",
+          useDark: "गहरी थीम पर जाएँ",
+          policyLabel: "गोपनीयता नीति"
+        },
+        es: {
+          eyebrow: "Tus datos, tu dispositivo",
+          title: "Política de privacidad",
+          intro: "Una explicación clara de qué guarda Reflexo, qué permanece en tu dispositivo y qué opciones tienes.",
+          updated: "Última actualización · 4 de octubre de 2026",
+          summary: "<strong>En resumen:</strong> Reflexo no requiere una cuenta. Tus partidas y preferencias se guardan en el navegador de este dispositivo; Reflexo no las envía a sus propios servidores.",
+          sections: [
+            ["Información que gestiona Reflexo", "Reflexo guarda los resultados de tiempo de reacción y el historial de partidas para que puedas consultar tus récords y estadísticas personales. También guarda el idioma, el tema claro u oscuro y las preferencias de sonido que elijas. Estos datos se almacenan localmente en el navegador de este dispositivo y no están asociados a una cuenta."],
+            ["Cómo usa la aplicación esta información", "La aplicación lee los registros locales para mostrar tus estadísticas y tus preferencias para aplicar los ajustes elegidos. Las pruebas de reacción usan tus toques, clics, pulsaciones de teclas o movimientos del puntero para jugar y calcular resultados. Los sonidos se generan en el navegador; Reflexo no usa el micrófono para grabarte."],
+            ["Almacenamiento y archivos de guardado", "El navegador conserva esta información hasta que la elimines. La aplicación guarda como máximo los 200 resultados más recientes de cada minijuego. Puedes exportar un archivo de guardado; se descarga en tu dispositivo e incluye el historial de partidas y los ajustes. Si importas o compartes ese archivo, tú decides dónde guardarlo y quién puede acceder."],
+            ["Compartición y servicios de red", "Reflexo no vende información personal, no muestra publicidad basada en el comportamiento ni transmite tu historial de partidas o preferencias a servidores operados por Reflexo. El alojamiento del sitio y tu navegador pueden procesar datos básicos de conexión (como la dirección IP y los detalles de la solicitud) para servir la página, proteger el servicio o diagnosticar problemas. Esos procesos se rigen por las políticas del proveedor de alojamiento."],
+            ["Vista previa y diagnóstico de errores", "Al abrir Reflexo en una vista previa de desarrollo o de un editor, ese entorno puede ofrecer herramientas opcionales de informes de errores. Si la plataforma de vista previa las activa, los detalles técnicos de los errores podrían enviarse a dicha plataforma para diagnosticar fallos. Esto es independiente de los registros locales de Reflexo y se rige por las condiciones de privacidad de la plataforma. La aplicación publicada no incluye rastreadores de analítica ni publicidad de Reflexo."],
+            ["Tus opciones y eliminación de datos", "Puedes eliminar los datos guardados por Reflexo borrando el almacenamiento del navegador de este sitio o los datos de la aplicación en los ajustes del dispositivo. También puedes exportar tus registros desde las opciones de guardado. Al borrar el almacenamiento del navegador, también podrían restablecerse el idioma, el tema y el sonido. Guarda con cuidado los archivos exportados, ya que contienen tu historial y tus ajustes."],
+            ["Privacidad de menores", "Reflexo no solicita un nombre, una dirección de correo electrónico ni el registro de una cuenta. La aplicación no está diseñada para recopilar información personal de menores. Si crees que se ha proporcionado información a un proveedor de alojamiento o de vista previa, contacta con ese proveedor para ejercer los derechos que correspondan."],
+            ["Cambios y contacto", "Esta política puede actualizarse si cambian las funciones o las prácticas de datos de la aplicación. La versión más reciente se publicará en esta página con una nueva fecha de actualización. Reflexo no publica actualmente una dirección de contacto específica para privacidad; para consultas, utiliza el canal de asistencia del distribuidor de la aplicación o de la plataforma de alojamiento."]
+          ],
+          footer: "Hecho para reaccionar rápido. Diseñado pensando en tu privacidad.",
+          languageLabel: "Idioma",
+          light: "Tema claro",
+          dark: "Tema oscuro",
+          useLight: "Cambiar al tema claro",
+          useDark: "Cambiar al tema oscuro",
+          policyLabel: "Política de privacidad"
+        },
+        ar: {
+          eyebrow: "بياناتك على جهازك",
+          title: "سياسة الخصوصية",
+          intro: "شرح واضح لما تحفظه Reflexo، وما يبقى على جهازك، والخيارات المتاحة لك.",
+          updated: "آخر تحديث · ٤ أكتوبر ٢٠٢٦",
+          summary: "<strong>باختصار:</strong> لا يتطلب Reflexo إنشاء حساب. تُحفظ سجلات اللعب والتفضيلات في متصفح هذا الجهاز، ولا ترسلها Reflexo إلى خوادمها.",
+          sections: [
+            ["المعلومات التي يتعامل معها Reflexo", "يحفظ Reflexo نتائج زمن الاستجابة وسجل الألعاب لتتمكن من الاطلاع على أرقامك القياسية وإحصاءاتك الشخصية. كما يحفظ اللغة والمظهر الفاتح أو الداكن وتفضيلات الصوت التي تختارها. تُخزَّن هذه العناصر محلياً في متصفح هذا الجهاز ولا ترتبط بحساب."],
+            ["كيفية استخدام التطبيق للمعلومات", "يقرأ التطبيق السجلات المحلية لعرض إحصاءاتك، ويقرأ تفضيلاتك لتطبيق الإعدادات التي اخترتها. تستخدم اختبارات الاستجابة النقرات أو اللمسات أو ضغطات المفاتيح أو حركة المؤشر لتشغيل الألعاب وحساب النتائج. تُنشأ المؤثرات الصوتية في المتصفح؛ ولا يستخدم Reflexo الميكروفون لتسجيلك."],
+            ["التخزين وملفات الحفظ", "يحتفظ المتصفح بهذه المعلومات إلى أن تحذفها. يحتفظ التطبيق بأحدث ٢٠٠ نتيجة كحد أقصى لكل لعبة مصغرة. يمكنك تصدير ملف حفظ بنفسك؛ ويُنزّل إلى جهازك ويتضمن سجل اللعب والإعدادات. إذا استوردت الملف أو شاركته، فأنت تختار مكانه ومن يمكنه الوصول إليه."],
+            ["المشاركة وخدمات الشبكة", "لا يبيع Reflexo المعلومات الشخصية، ولا يعرض إعلانات مخصصة حسب السلوك، ولا يرسل سجل اللعب أو التفضيلات إلى خوادم تديرها Reflexo. قد يعالج مستضيف الموقع والمتصفح بيانات اتصال أساسية (مثل عنوان IP وتفاصيل الطلب) لتقديم الصفحة وحماية الخدمة وتشخيص المشكلات التشغيلية. تخضع هذه العمليات لسياسات جهة الاستضافة."],
+            ["المعاينة وتشخيص الأخطاء", "عند فتح Reflexo في معاينة التطوير أو المحرر، قد توفر البيئة أدوات اختيارية للإبلاغ عن الأخطاء. إذا فعّلت منصة المعاينة هذه الأدوات، فقد تُرسل تفاصيل تقنية عن الأخطاء إلى المنصة للمساعدة في تشخيص الأعطال. هذا منفصل عن سجلات اللعب المحلية في Reflexo ويخضع لشروط خصوصية المنصة. لا يتضمن التطبيق المنشور أدوات تحليل أو تتبع إعلاني من Reflexo."],
+            ["خياراتك وحذف البيانات", "يمكنك حذف بيانات Reflexo المخزنة عبر مسح مساحة تخزين الموقع في المتصفح أو بيانات التطبيق من إعدادات الجهاز. ويمكنك أيضاً تصدير سجلاتك من خيارات الحفظ في التطبيق. قد يؤدي مسح مساحة تخزين المتصفح إلى إعادة ضبط اللغة والمظهر والصوت. احفظ ملفات التصدير بأمان لأنها تتضمن سجل اللعب والإعدادات."],
+            ["خصوصية الأطفال", "لا يطلب Reflexo اسماً أو عنوان بريد إلكتروني أو إنشاء حساب. ولم يُصمم التطبيق لجمع المعلومات الشخصية من الأطفال. إذا اعتقدت أن معلومات قد قُدمت إلى مزود الاستضافة أو المعاينة، فتواصل مع ذلك المزود لممارسة الحقوق المعمول بها."],
+            ["التغييرات والتواصل", "قد تُحدّث هذه السياسة عند تغيير ميزات التطبيق أو ممارسات البيانات. ستُنشر أحدث نسخة في هذه الصفحة مع تاريخ تحديث جديد. لا ينشر Reflexo حالياً عنواناً مخصصاً للتواصل بشأن الخصوصية؛ استخدم قناة الدعم لدى موزع التطبيق أو منصة الاستضافة للاستفسارات."]
+          ],
+          footer: "مصمم لسرعة الاستجابة، مع مراعاة الخصوصية.",
+          languageLabel: "اللغة",
+          light: "المظهر الفاتح",
+          dark: "المظهر الداكن",
+          useLight: "التبديل إلى المظهر الفاتح",
+          useDark: "التبديل إلى المظهر الداكن",
+          policyLabel: "سياسة الخصوصية"
+        },
+        fr: {
+          eyebrow: "Vos données, votre appareil",
+          title: "Politique de confidentialité",
+          intro: "Une explication claire de ce que Reflexo enregistre, de ce qui reste sur votre appareil et de vos choix.",
+          updated: "Dernière mise à jour · 4 octobre 2026",
+          summary: "<strong>En bref :</strong> Reflexo ne nécessite aucun compte. Vos parties et préférences sont enregistrées dans le navigateur de cet appareil ; Reflexo ne les envoie pas à ses propres serveurs.",
+          sections: [
+            ["Informations traitées par Reflexo", "Reflexo enregistre les temps de réaction et l’historique des parties afin que vous puissiez consulter vos records et statistiques personnels. L’application mémorise aussi la langue, le thème clair ou sombre et les préférences sonores choisis. Ces éléments restent dans le stockage local du navigateur de cet appareil et ne sont associés à aucun compte."],
+            ["Utilisation de ces informations", "L’application lit les résultats locaux pour afficher vos statistiques et vos préférences pour appliquer vos réglages. Les tests de réaction utilisent vos appuis, clics, frappes ou mouvements du pointeur pour jouer et calculer les résultats. Les signaux audio sont générés dans votre navigateur ; Reflexo n’utilise pas le microphone pour vous enregistrer."],
+            ["Stockage et fichiers de sauvegarde", "Le navigateur conserve ces informations jusqu’à leur suppression. L’application garde au maximum les 200 résultats les plus récents par mini-jeu. Vous pouvez exporter vous-même un fichier de sauvegarde ; il est téléchargé sur votre appareil et contient votre historique et vos réglages. Si vous importez ou partagez ce fichier, vous choisissez où il est conservé et qui peut y accéder."],
+            ["Partage et services réseau", "Reflexo ne vend pas d’informations personnelles, n’affiche pas de publicité ciblée selon le comportement et ne transmet pas votre historique de jeu ni vos préférences à des serveurs exploités par Reflexo. L’hébergeur du site et votre navigateur peuvent traiter des données de connexion élémentaires (comme une adresse IP et des détails de requête) pour fournir la page, protéger le service ou diagnostiquer des problèmes. Ces traitements relèvent des règles de l’hébergeur."],
+            ["Aperçu et diagnostic des erreurs", "Lorsque Reflexo est ouvert dans un aperçu de développement ou d’éditeur, cet environnement peut proposer des outils facultatifs de signalement d’erreurs. Si la plateforme d’aperçu les active, des détails techniques peuvent lui être transmis afin de diagnostiquer les pannes. Ces données sont distinctes des résultats locaux de Reflexo et soumises aux conditions de confidentialité de la plateforme. L’application publiée n’intègre aucun traceur d’analyse ou de publicité Reflexo."],
+            ["Vos choix et suppression des données", "Vous pouvez supprimer les données enregistrées par Reflexo en effaçant le stockage du site dans votre navigateur ou les données de l’application dans les paramètres de votre appareil. Vous pouvez également exporter vos résultats depuis les options de sauvegarde. L’effacement du stockage peut aussi réinitialiser la langue, le thème et le son. Protégez les fichiers exportés : ils contiennent votre historique et vos réglages."],
+            ["Vie privée des enfants", "Reflexo ne demande ni nom, ni adresse e-mail, ni création de compte. L’application n’est pas conçue pour recueillir des informations personnelles auprès des enfants. Si vous pensez que des informations ont été transmises à un hébergeur ou à un fournisseur d’aperçu, contactez ce fournisseur pour exercer les droits applicables."],
+            ["Modifications et contact", "Cette politique peut évoluer si les fonctionnalités ou les pratiques de données de l’application changent. La dernière version sera publiée sur cette page avec une date de mise à jour révisée. Reflexo ne publie pas actuellement d’adresse dédiée aux questions de confidentialité ; veuillez utiliser le canal d’assistance du distributeur de l’application ou de la plateforme d’hébergement."]
+          ],
+          footer: "Conçu pour réagir vite, avec le respect de la vie privée en tête.",
+          languageLabel: "Langue",
+          light: "Thème clair",
+          dark: "Thème sombre",
+          useLight: "Passer au thème clair",
+          useDark: "Passer au thème sombre",
+          policyLabel: "Politique de confidentialité"
+        },
+        bn: {
+          eyebrow: "আপনার ডেটা, আপনার ডিভাইস",
+          title: "গোপনীয়তা নীতি",
+          intro: "Reflexo কী সংরক্ষণ করে, কী আপনার ডিভাইসে থাকে এবং আপনার হাতে কী কী বিকল্প আছে—তার স্পষ্ট বিবরণ।",
+          updated: "সর্বশেষ হালনাগাদ · ৪ অক্টোবর ২০২৬",
+          summary: "<strong>সংক্ষেপে:</strong> Reflexo ব্যবহার করতে অ্যাকাউন্ট লাগে না। আপনার গেমের রেকর্ড ও পছন্দ এই ডিভাইসের ব্রাউজারে থাকে; Reflexo এগুলো নিজস্ব সার্ভারে পাঠায় না।",
+          sections: [
+            ["Reflexo যে তথ্য রাখে", "ব্যক্তিগত রেকর্ড ও পরিসংখ্যান দেখানোর জন্য Reflexo প্রতিক্রিয়ার সময়ের ফলাফল এবং গেমের ইতিহাস সংরক্ষণ করে। নির্বাচিত ভাষা, হালকা বা গাঢ় থিম এবং শব্দের পছন্দও সংরক্ষিত হয়। এগুলো এই ডিভাইসের ব্রাউজারের স্থানীয় স্টোরেজে থাকে এবং কোনো অ্যাকাউন্টের সঙ্গে যুক্ত নয়।"],
+            ["অ্যাপ কীভাবে তথ্য ব্যবহার করে", "আপনার পরিসংখ্যান দেখাতে অ্যাপ স্থানীয় রেকর্ড পড়ে এবং নির্বাচিত সেটিংস প্রয়োগ করতে পছন্দগুলো পড়ে। প্রতিক্রিয়া পরীক্ষায় গেম চালানো ও ফল গণনার জন্য আপনার ট্যাপ, ক্লিক, কী চাপা বা পয়েন্টারের ইনপুট ব্যবহার হয়। শব্দের সংকেত ব্রাউজারেই তৈরি হয়; আপনাকে রেকর্ড করতে Reflexo মাইক্রোফোন ব্যবহার করে না।"],
+            ["স্টোরেজ ও সেভ ফাইল", "আপনি মুছে না ফেলা পর্যন্ত ব্রাউজার এই তথ্য রাখে। প্রতি মিনিগেমে সর্বশেষ ২০০টি ফলাফল পর্যন্ত সংরক্ষিত হয়। আপনি নিজে সেভ ফাইল এক্সপোর্ট করতে পারেন; এটি আপনার ডিভাইসে ডাউনলোড হয় এবং গেমের ইতিহাস ও সেটিংস থাকে। ফাইলটি কোথায় রাখবেন বা কার সঙ্গে ভাগ করবেন, তা আপনার সিদ্ধান্ত।"],
+            ["তথ্য ভাগাভাগি ও নেটওয়ার্ক পরিষেবা", "Reflexo ব্যক্তিগত তথ্য বিক্রি করে না, আচরণভিত্তিক বিজ্ঞাপন দেখায় না এবং আপনার গেমের ইতিহাস বা পছন্দ Reflexo পরিচালিত সার্ভারে পাঠায় না। ওয়েবসাইটের হোস্ট ও ব্রাউজার পেজ সরবরাহ, পরিষেবা সুরক্ষা বা সমস্যা নির্ণয়ের জন্য মৌলিক সংযোগের তথ্য (যেমন IP ঠিকানা ও অনুরোধের বিবরণ) প্রক্রিয়া করতে পারে। এই প্রক্রিয়া হোস্টের নীতির অধীন।"],
+            ["প্রিভিউ ও ত্রুটি নির্ণয়", "ডেভেলপমেন্ট বা এডিটর প্রিভিউতে Reflexo খুললে সেই পরিবেশে ঐচ্ছিক ত্রুটি-রিপোর্টিং সুবিধা থাকতে পারে। প্রিভিউ প্ল্যাটফর্ম এটি চালু করলে ত্রুটির প্রযুক্তিগত বিবরণ সমস্যা নির্ণয়ের জন্য সেখানে পাঠানো হতে পারে। এটি Reflexo-র স্থানীয় গেম রেকর্ড থেকে আলাদা এবং প্ল্যাটফর্মের গোপনীয়তার শর্তে পরিচালিত। প্রকাশিত অ্যাপে Reflexo-র বিশ্লেষণ বা বিজ্ঞাপন ট্র্যাকার নেই।"],
+            ["আপনার বিকল্প ও তথ্য মুছে ফেলা", "এই সাইটের ব্রাউজার স্টোরেজ মুছে বা ডিভাইস সেটিংস থেকে অ্যাপের ডেটা মুছে Reflexo-র সংরক্ষিত তথ্য সরাতে পারেন। অ্যাপের সেভ অপশন থেকে রেকর্ড এক্সপোর্টও করতে পারেন। ব্রাউজার স্টোরেজ মুছলে ভাষা, থিম ও শব্দের পছন্দও রিসেট হতে পারে। এক্সপোর্ট করা ফাইলে গেমের ইতিহাস ও সেটিংস থাকে, তাই সেটি নিরাপদে রাখুন।"],
+            ["শিশুদের গোপনীয়তা", "Reflexo নাম, ইমেল ঠিকানা বা অ্যাকাউন্ট নিবন্ধন চায় না। শিশুদের ব্যক্তিগত তথ্য সংগ্রহ করার উদ্দেশ্যে অ্যাপটি তৈরি করা হয়নি। কোনো তথ্য হোস্টিং বা প্রিভিউ পরিষেবা প্রদানকারীকে দেওয়া হয়েছে বলে মনে হলে, প্রযোজ্য অধিকার প্রয়োগের জন্য সেই প্রদানকারীর সঙ্গে যোগাযোগ করুন।"],
+            ["পরিবর্তন ও যোগাযোগ", "অ্যাপের বৈশিষ্ট্য বা তথ্য ব্যবহারের পদ্ধতি বদলালে এই নীতি হালনাগাদ হতে পারে। নতুন হালনাগাদের তারিখসহ সর্বশেষ সংস্করণ এই পাতায় প্রকাশ করা হবে। Reflexo বর্তমানে গোপনীয়তার জন্য আলাদা যোগাযোগের ঠিকানা প্রকাশ করেনি; প্রশ্নের জন্য অ্যাপের পরিবেশক বা হোস্টিং প্ল্যাটফর্মের সহায়তা মাধ্যম ব্যবহার করুন।"]
+          ],
+          footer: "দ্রুত প্রতিক্রিয়ার জন্য তৈরি, গোপনীয়তার কথা মাথায় রেখে।",
+          languageLabel: "ভাষা",
+          light: "হালকা থিম",
+          dark: "গাঢ় থিম",
+          useLight: "হালকা থিমে যান",
+          useDark: "গাঢ় থিমে যান",
+          policyLabel: "গোপনীয়তা নীতি"
+        },
+        pt: {
+          eyebrow: "Os seus dados, no seu dispositivo",
+          title: "Política de privacidade",
+          intro: "Uma explicação clara sobre o que a Reflexo guarda, o que permanece no seu dispositivo e as opções disponíveis.",
+          updated: "Última atualização · 4 de outubro de 2026",
+          summary: "<strong>Em resumo:</strong> A Reflexo não exige uma conta. Os seus resultados e preferências ficam no navegador deste dispositivo; a Reflexo não os envia para os seus próprios servidores.",
+          sections: [
+            ["Informações tratadas pela Reflexo", "A Reflexo guarda os resultados de tempo de reação e o histórico de jogos para que possa consultar os seus recordes e estatísticas pessoais. Também guarda o idioma, o tema claro ou escuro e as preferências de som escolhidas. Estes dados ficam no armazenamento local do navegador deste dispositivo e não estão associados a uma conta."],
+            ["Como a aplicação utiliza os dados", "A aplicação lê os resultados locais para apresentar as suas estatísticas e as preferências para aplicar as definições escolhidas. Os testes de reação utilizam toques, cliques, teclas ou movimentos do ponteiro para jogar e calcular resultados. Os sinais sonoros são gerados no navegador; a Reflexo não utiliza o microfone para o gravar."],
+            ["Armazenamento e ficheiros de gravação", "O navegador mantém estas informações até serem removidas. A aplicação guarda até 200 resultados mais recentes por minijogo. Pode exportar um ficheiro de gravação; este é descarregado para o seu dispositivo e contém o histórico e as definições. Se importar ou partilhar esse ficheiro, decide onde fica e quem pode aceder-lhe."],
+            ["Partilha e serviços de rede", "A Reflexo não vende informações pessoais, não apresenta publicidade baseada no comportamento e não transmite o seu histórico de jogos ou preferências para servidores operados pela Reflexo. O alojamento do site e o navegador podem tratar dados básicos de ligação (como endereço IP e detalhes do pedido) para disponibilizar a página, proteger o serviço ou diagnosticar problemas. Esses processos seguem as políticas do alojamento."],
+            ["Pré-visualização e diagnóstico de erros", "Ao abrir a Reflexo numa pré-visualização de desenvolvimento ou editor, esse ambiente pode disponibilizar ferramentas opcionais de comunicação de erros. Se a plataforma de pré-visualização as ativar, detalhes técnicos de erros poderão ser enviados à plataforma para ajudar a diagnosticar falhas. Isto é separado dos resultados locais da Reflexo e está sujeito aos termos de privacidade da plataforma. A aplicação publicada não inclui rastreadores de análise ou publicidade da Reflexo."],
+            ["As suas opções e eliminação de dados", "Pode remover os dados guardados pela Reflexo limpando o armazenamento deste site no navegador ou os dados da aplicação nas definições do dispositivo. Também pode exportar os seus resultados através das opções de gravação. Limpar o armazenamento do navegador pode repor o idioma, o tema e o som. Proteja os ficheiros exportados, pois contêm o histórico e as definições."],
+            ["Privacidade das crianças", "A Reflexo não solicita nome, endereço de e-mail ou registo de conta. A aplicação não foi concebida para recolher informações pessoais de crianças. Se acredita que foram fornecidas informações a um fornecedor de alojamento ou pré-visualização, contacte esse fornecedor para exercer os direitos aplicáveis."],
+            ["Alterações e contacto", "Esta política pode ser atualizada quando as funcionalidades ou práticas de dados da aplicação mudarem. A versão mais recente será publicada nesta página com uma nova data de atualização. A Reflexo não publica atualmente um endereço dedicado a questões de privacidade; utilize o canal de apoio do distribuidor da aplicação ou da plataforma de alojamento."]
+          ],
+          footer: "Feita para reações rápidas. Criada com a privacidade em mente.",
+          languageLabel: "Idioma",
+          light: "Tema claro",
+          dark: "Tema escuro",
+          useLight: "Mudar para o tema claro",
+          useDark: "Mudar para o tema escuro",
+          policyLabel: "Política de privacidade"
+        },
+        ru: {
+          eyebrow: "Ваши данные — на вашем устройстве",
+          title: "Политика конфиденциальности",
+          intro: "Понятно рассказываем, что Reflexo сохраняет, что остаётся на устройстве и какими возможностями вы располагаете.",
+          updated: "Последнее обновление · 4 октября 2026 г.",
+          summary: "<strong>Кратко:</strong> Для Reflexo не нужна учётная запись. Игровые результаты и настройки хранятся в браузере на этом устройстве; Reflexo не отправляет их на собственные серверы.",
+          sections: [
+            ["Какие данные обрабатывает Reflexo", "Reflexo сохраняет результаты времени реакции и историю игр, чтобы вы могли просматривать личные рекорды и статистику. Также сохраняются выбранный язык, светлая или тёмная тема и звуковые настройки. Эти данные находятся в локальном хранилище браузера на этом устройстве и не привязаны к учётной записи."],
+            ["Как приложение использует эти данные", "Приложение читает локальные результаты для показа статистики, а настройки — чтобы применить выбранные параметры. Для запуска игр и расчёта результатов тесты реакции используют касания, щелчки, нажатия клавиш или движения указателя. Звуковые сигналы создаются в браузере; Reflexo не использует микрофон для записи."],
+            ["Хранение и файлы сохранения", "Браузер хранит эту информацию, пока вы её не удалите. Для каждой мини-игры сохраняются не более 200 последних результатов. Вы можете самостоятельно экспортировать файл сохранения: он загружается на устройство и содержит историю игр и настройки. При импорте или передаче файла вы сами выбираете место хранения и круг лиц, имеющих к нему доступ."],
+            ["Передача данных и сетевые службы", "Reflexo не продаёт личную информацию, не показывает рекламу на основе поведения и не передаёт историю игр или настройки на серверы Reflexo. Хостинг сайта и браузер могут обрабатывать основные данные соединения (например, IP-адрес и сведения о запросе), чтобы доставлять страницу, защищать службу или диагностировать неполадки. Такая обработка регулируется политиками хостинг-провайдера."],
+            ["Предварительный просмотр и диагностика ошибок", "При открытии Reflexo в режиме разработки или предварительного просмотра редактора в этой среде могут быть доступны дополнительные средства отправки сообщений об ошибках. Если платформа включила их, технические сведения об ошибках могут передаваться ей для диагностики сбоев. Это отдельно от локальных игровых результатов Reflexo и регулируется условиями платформы. В опубликованном приложении нет аналитических или рекламных трекеров Reflexo."],
+            ["Ваши возможности и удаление данных", "Удалить данные Reflexo можно, очистив хранилище этого сайта в браузере или данные приложения в настройках устройства. Также можно экспортировать результаты через параметры сохранения. Очистка хранилища может сбросить язык, тему и звук. Храните экспортированные файлы в безопасности: в них содержатся история игр и настройки."],
+            ["Конфиденциальность детей", "Reflexo не запрашивает имя, адрес электронной почты или регистрацию учётной записи. Приложение не предназначено для сбора личной информации детей. Если вы считаете, что сведения были переданы хостинг-провайдеру или платформе предварительного просмотра, обратитесь к этому провайдеру для реализации применимых прав."],
+            ["Изменения и связь", "Политика может обновляться при изменении функций приложения или способов обработки данных. Новая версия с актуальной датой будет опубликована на этой странице. Reflexo пока не публикует отдельный адрес для вопросов о конфиденциальности; обращайтесь через службу поддержки распространителя приложения или хостинг-платформы."]
+          ],
+          footer: "Для быстрой реакции. С заботой о конфиденциальности.",
+          languageLabel: "Язык",
+          light: "Светлая тема",
+          dark: "Тёмная тема",
+          useLight: "Включить светлую тему",
+          useDark: "Включить тёмную тему",
+          policyLabel: "Политика конфиденциальности"
+        }
+      };
+
+      const languageSelect = document.getElementById("language");
+      const themeButton = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+      const themeLabel = document.getElementById("theme-label");
+
+      function safeGet(key) {
+        try { return localStorage.getItem(key); } catch { return null; }
+      }
+
+      function safeSet(key, value) {
+        try { localStorage.setItem(key, value); } catch { /* Storage may be disabled. */ }
+      }
+
+      function renderLanguage(language) {
+        const copy = content[language] || content.en;
+        document.documentElement.lang = language;
+        document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+        document.title = `${copy.policyLabel} — Reflexo`;
+        document.querySelector('meta[name="description"]').content = copy.intro;
+        languageSelect.setAttribute("aria-label", copy.languageLabel);
+        document.getElementById("eyebrow").textContent = copy.eyebrow;
+        document.getElementById("page-title").textContent = copy.title;
+        document.getElementById("intro").textContent = copy.intro;
+        document.getElementById("updated").textContent = copy.updated;
+        document.getElementById("summary").innerHTML = copy.summary;
+        document.getElementById("footer-note").textContent = copy.footer;
+        document.getElementById("policy").innerHTML = copy.sections.map(([heading, body], index) => `
+          <section class="policy-section">
+            <span class="section-number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+            <div class="section-content">
+              <h2>${heading}</h2>
+              <p>${body}</p>
+            </div>
+          </section>
+        `).join("");
+      }
+
+      function setTheme(theme, persist) {
+        const dark = theme === "dark";
+        document.documentElement.classList.toggle("dark", dark);
+        themeButton.setAttribute("aria-pressed", String(dark));
+        themeButton.setAttribute("aria-label", dark ? content[languageSelect.value].useLight : content[languageSelect.value].useDark);
+        themeLabel.textContent = dark ? content[languageSelect.value].dark : content[languageSelect.value].light;
+        themeIcon.innerHTML = dark
+          ? '<path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z"/>'
+          : '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>';
+        document.querySelector('meta[name="theme-color"]').content = dark ? "#151b1b" : "#f6f8f5";
+        if (persist) safeSet("reflexo-theme", theme);
+      }
+
+      const storedLanguage = safeGet("reflexo-language");
+      const browserLanguage = (navigator.language || "en").slice(0, 2);
+      const supported = Object.keys(content);
+      const initialLanguage = supported.includes(storedLanguage)
+        ? storedLanguage
+        : supported.includes(browserLanguage) ? browserLanguage : "en";
+      languageSelect.value = initialLanguage;
+      renderLanguage(initialLanguage);
+      languageSelect.addEventListener("change", () => {
+        safeSet("reflexo-language", languageSelect.value);
+        renderLanguage(languageSelect.value);
+        setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light", false);
+      });
+
+      const storedTheme = safeGet("reflexo-theme");
+      const initialTheme = storedTheme === "light" || storedTheme === "dark"
+        ? storedTheme
+        : window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      setTheme(initialTheme, false);
+      themeButton.addEventListener("click", () => {
+        setTheme(document.documentElement.classList.contains("dark") ? "light" : "dark", true);
+      });
+    </script>
+  </body>
+</html>
